@@ -70,6 +70,7 @@ namespace CS2450_Library
 
         public void SetCheckOut(int patronId, IEnumerable<string> itemNames, DateTime currentDate)
         {
+            // Check in and check out the items
             List<string> coItems = itemNames.ToList();
             foreach (var item in Items)
             {
@@ -101,9 +102,9 @@ namespace CS2450_Library
             }
         }
 
-        public int GetPatronBorrowLimit(int patronId)
+        public int GetPatronBorrowLimit(int patronId, DateTime currentDate)
         {
-            return Patrons.Find(x => x.Id == patronId).GetBorrowLimit();
+            return Patrons.Find(x => x.Id == patronId).GetBorrowLimit(currentDate);
         }
     }
 }

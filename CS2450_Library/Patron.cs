@@ -13,7 +13,7 @@ namespace CS2450_Library
         public string Address;
         public DateTime DateOfBirth;
 
-        public int GetBorrowLimit()
+        public int GetBorrowLimit(DateTime currentDate)
         {
             throw new NotImplementedException();
         }
