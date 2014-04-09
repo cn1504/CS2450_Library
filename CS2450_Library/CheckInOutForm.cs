@@ -28,7 +28,7 @@ namespace CS2450_Library
             this.currentDate = currentDate;
             this.patronId = patronId;
             Text = Text + " - " + patronName;
-            patronBorrowLimit = library.GetPatronBorrowLimit(patronId);
+            patronBorrowLimit = library.GetPatronBorrowLimit(patronId, currentDate);
 
             lvwItemsColumnSorter = new ListViewColumnSorter();
             lvwItemsColumnSorter.SortColumn = 0;
