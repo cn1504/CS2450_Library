@@ -105,8 +105,11 @@ namespace CS2450_Library
                 foreach (var item in library.GetCatalog())
                 {
                     var item1 = new ListViewItem(item.Name);
-                    item1.SubItems.Add(item.Author);
-                    item1.SubItems.Add(item.BorrowedBy.ToString());
+                    if(item is Book)
+                        item1.SubItems.Add((item as Book).Author);
+                    else
+                        item1.SubItems.Add("");
+                    item1.SubItems.Add((item.BorrowedBy == 0) ? "" : item.BorrowedBy.ToString());
                     item1.SubItems.Add((item.BorrowedBy == 0) ? "" : item.BorrowDate.ToString("d"));
                     listView.Items.Add(item1);
                 }
@@ -159,9 +162,12 @@ namespace CS2450_Library
                 foreach (var item in library.GetOverdue(currentTime))
                 {
                     var item1 = new ListViewItem(item.Name);
-                    item1.SubItems.Add(item.Author);
-                    item1.SubItems.Add(item.BorrowedBy.ToString());
-                    item1.SubItems.Add(item.BorrowDate.ToString("d"));
+                    if (item is Book)
+                        item1.SubItems.Add((item as Book).Author);
+                    else
+                        item1.SubItems.Add("");
+                    item1.SubItems.Add((item.BorrowedBy == 0) ? "" : item.BorrowedBy.ToString());
+                    item1.SubItems.Add((item.BorrowedBy == 0) ? "" : item.BorrowDate.ToString("d"));
                     listView.Items.Add(item1);                
                 }
 

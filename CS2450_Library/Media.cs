@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CS2450_Library
 {
-    class Media
+    class Media : Item
     {
         public bool IsDvd;
     }
