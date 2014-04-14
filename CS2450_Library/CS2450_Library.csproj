@@ -44,6 +44,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddItemForm.Designer.cs">
+      <DependentUpon>AddItemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddPatronForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddPatronForm.Designer.cs">
+      <DependentUpon>AddPatronForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Book.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="CheckInOutForm.cs">
@@ -64,6 +76,12 @@
     <Compile Include="Patron.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddItemForm.resx">
+      <DependentUpon>AddItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddPatronForm.resx">
+      <DependentUpon>AddPatronForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CheckInOutForm.resx">
       <DependentUpon>CheckInOutForm.cs</DependentUpon>
     </EmbeddedResource>

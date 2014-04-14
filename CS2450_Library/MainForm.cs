@@ -85,10 +85,8 @@ namespace CS2450_Library
             overdueButtonPanel.BackColor = (selectedCategory == 2) ? SystemColors.MenuHighlight : SystemColors.Window;
 
             addItemButton.Visible = false;
-            editItemButton.Visible = false;
             deleteItemButton.Visible = false;
             addPatronButton.Visible = false;
-            editPatronButton.Visible = false;
             deletePatronButton.Visible = false;
             checkInOutButton.Visible = false;
 
@@ -98,26 +96,37 @@ namespace CS2450_Library
                 listView.Items.Clear();
 
                 listView.Columns.Add("Name", 150);
-                listView.Columns.Add("Author", 150);
+                listView.Columns.Add("Author", 100);
+                listView.Columns.Add("Type", 80);
                 listView.Columns.Add("Borrowed By", 150);
                 listView.Columns.Add("Borrowed Date", 100);
 
                 foreach (var item in library.GetCatalog())
                 {
                     var item1 = new ListViewItem(item.Name);
-                    if(item is Book)
+                    if (item is Book)
+                    {
                         item1.SubItems.Add((item as Book).Author);
-                    else
+                        item1.SubItems.Add((item as Book).IsChild ? "Children's" : "Adult's");
+                    }
+                    else if(item is Media)
+                    {
                         item1.SubItems.Add("");
+                        item1.SubItems.Add((item as Media).IsDvd ? "Dvd" : "Video Tape");
+                    }
+                    else 
+                    {                        
+                        item1.SubItems.Add("");
+                        item1.SubItems.Add("");
+                    }
+
                     item1.SubItems.Add((item.BorrowedBy == 0) ? "" : item.BorrowedBy.ToString());
                     item1.SubItems.Add((item.BorrowedBy == 0) ? "" : item.BorrowDate.ToString("d"));
                     listView.Items.Add(item1);
                 }
 
                 addItemButton.Visible = true;
-                editItemButton.Visible = true;
                 deleteItemButton.Visible = true;
-                editItemButton.Enabled = false;
                 deleteItemButton.Enabled = false;
                 buttonStripSeparator.Visible = false;
             }
@@ -141,8 +150,6 @@ namespace CS2450_Library
                 }
 
                 addPatronButton.Visible = true;
-                editPatronButton.Enabled = false;
-                editPatronButton.Visible = true;
                 deletePatronButton.Enabled = false;
                 deletePatronButton.Visible = true;
                 checkInOutButton.Visible = true;
@@ -228,28 +235,28 @@ namespace CS2450_Library
             {
                 if (listView.SelectedItems.Count > 0)
                 {
-                    editItemButton.Enabled = true;
                     deleteItemButton.Enabled = true;
+                    deleteItemToolStripMenuItem.Enabled = true;
                 }
                 else
                 {
-                    editItemButton.Enabled = false;
                     deleteItemButton.Enabled = false;
+                    deleteItemToolStripMenuItem.Enabled = false;
                 }
             }
             else if(selectedCategory == 1)  // Patrons View
             {
                 if (listView.SelectedItems.Count > 0)
                 {
-                    editPatronButton.Enabled = true;
                     deletePatronButton.Enabled = true;
                     checkInOutButton.Enabled = true;
+                    deleteItemToolStripMenuItem.Enabled = true;
                 }
                 else
                 {
-                    editPatronButton.Enabled = false;
                     deletePatronButton.Enabled = false;
                     checkInOutButton.Enabled = false;
+                    deleteItemToolStripMenuItem.Enabled = false;
                 }
             }
             else if(selectedCategory == 2)  // Overdue View
@@ -273,7 +280,7 @@ namespace CS2450_Library
                 {
                     // Show Check In/Out Dialog for selected patron
                     int patron = int.Parse(listView.SelectedItems[0].Text);
-                    var myForm = new CheckInOutForm(library, patron, listView.SelectedItems[1].Text, currentTime);
+                    var myForm = new CheckInOutForm(library, patron, listView.SelectedItems[0].SubItems[1].Text, currentTime);
                     myForm.Show();
                 }
             }
@@ -366,6 +373,16 @@ namespace CS2450_Library
             }
         }
 
+        private void addItemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            addItem();
+        }
+
+        private void addPatronToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            addPatron();
+        }
+
         // Open and Saving File Dialogs
         //---------------------------------------------------------------------
         private void libraryOpenDialog_FileOk(object sender, CancelEventArgs e)
@@ -396,63 +413,22 @@ namespace CS2450_Library
         //---------------------------------------------------------------------
         private void addItemButton_Click(object sender, EventArgs e)
         {
-            // Show detailed item dialog for a new item
-        }
-
-        private void editItemButton_Click(object sender, EventArgs e)
-        {
-            // Show detailed item dialog for selected item
+            addItem();
         }
 
         private void deleteItemButton_Click(object sender, EventArgs e)
         {
-            /*
-            if (MessageBox.Show("Are you sure you want to delete " + listView.SelectedItems[0].Text + "?", "Deletion Confirmation", MessageBoxButtons.YesNo) 
-                == DialogResult.Yes)
-            {
-                library.Catalog.Remove(library.Catalog.Find(item => item.Name == listView.SelectedItems[0].Text));
-                // library.RemoveItem(listView.SelectedItems[0].Text);
-                refreshGUI();
-            }
-            */
+            deleteItems();
         }
 
         private void addPatronButton_Click(object sender, EventArgs e)
         {
-            // Show detailed item dialog for a new patron
-        }
-
-        private void editPatronButton_Click(object sender, EventArgs e)
-        {
-            // Show detailed item dialog for selected patron
+            addPatron();
         }
 
         private void deletePatronButton_Click(object sender, EventArgs e)
         {
-            /*
-            if (MessageBox.Show("Are you sure you want to delete " + listView.SelectedItems[0].Text + "?", "Deletion Confirmation", MessageBoxButtons.YesNo)
-                == DialogResult.Yes)
-            {
-                // Library.RemovePatron(listView.SelectedItems[0].Text);
-                var p = library.Patrons.Find(patron => patron.Name == listView.SelectedItems[0].Text);
-                bool hasItem = false;
-                foreach (var item in library.Catalog)
-                {
-                    if (item.BorrowedBy == p.Name)
-                        hasItem = true;
-                }
-
-                if (hasItem)
-                {
-                    MessageBox.Show(p.Name + " has borrowed items.", "Error", MessageBoxButtons.OK);
-                }
-                else
-                {
-                    library.Patrons.Remove(p);
-                    refreshGUI();
-                }
-            }
-            */
+            deletePatrons();
         }
 
         private void checkInOutButton_Click(object sender, EventArgs e)
@@ -461,6 +437,74 @@ namespace CS2450_Library
             int patron = int.Parse(listView.SelectedItems[0].Text);
             var myForm = new CheckInOutForm(library, patron, listView.SelectedItems[1].Text, currentTime);
             myForm.Show();
+        }
+
+        private void deleteItemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listView.SelectedItems.Count > 0)
+            {
+                if (selectedCategory == 0)
+                {
+                    deleteItems();
+                }
+                else if (selectedCategory == 1)
+                {
+                    deletePatrons();
+                }
+            }
+            
+        }
+
+        private void deleteItems()
+        {
+            if (MessageBox.Show("Are you sure you want to delete " + listView.SelectedItems[0].Text + "?", "Deletion Confirmation", MessageBoxButtons.YesNo)
+                   == DialogResult.Yes)
+            {
+                library.DeleteItem(listView.SelectedItems[0].Text);
+                refreshGUI();
+            }
+        }
+
+        private void deletePatrons()
+        {
+            if (MessageBox.Show("Are you sure you want to delete " + listView.SelectedItems[0].Text + "?", "Deletion Confirmation", MessageBoxButtons.YesNo)
+                == DialogResult.Yes)
+            {
+                // Library.RemovePatron(listView.SelectedItems[0].Text);
+                int pId = int.Parse(listView.SelectedItems[0].Text);
+                bool hasItem = false;
+                foreach (var item in library.GetCatalog())
+                {
+                    if (item.BorrowedBy == pId)
+                        hasItem = true;
+                }
+
+                if (hasItem)
+                {
+                    MessageBox.Show("That patron has borrowed items.", "Error", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    library.DeletePatron(pId);
+                    refreshGUI();
+                }
+            }
+        }
+
+        private void addItem()
+        {
+            // Show detailed item dialog for a new item
+            var form = new AddItemForm(library);
+            form.ShowDialog();
+            refreshGUI();
+        }
+
+        private void addPatron()
+        {
+            // Show detailed item dialog for a new patron
+            var form = new AddPatronForm(library);
+            form.ShowDialog();
+            refreshGUI();
         }
     }
 }

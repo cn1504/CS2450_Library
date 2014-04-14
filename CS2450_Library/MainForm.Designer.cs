@@ -56,10 +56,8 @@
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.addItemButton = new System.Windows.Forms.ToolStripButton();
-            this.editItemButton = new System.Windows.Forms.ToolStripButton();
             this.deleteItemButton = new System.Windows.Forms.ToolStripButton();
             this.addPatronButton = new System.Windows.Forms.ToolStripButton();
-            this.editPatronButton = new System.Windows.Forms.ToolStripButton();
             this.deletePatronButton = new System.Windows.Forms.ToolStripButton();
             this.buttonStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.checkInOutButton = new System.Windows.Forms.ToolStripButton();
@@ -72,6 +70,8 @@
             this.currentDateStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.libraryOpenDialog = new System.Windows.Forms.OpenFileDialog();
             this.librarySaveDialog = new System.Windows.Forms.SaveFileDialog();
+            this.deleteItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -175,7 +175,9 @@
             // 
             this.actionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addItemToolStripMenuItem,
-            this.addPatronToolStripMenuItem});
+            this.addPatronToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.deleteItemToolStripMenuItem});
             this.actionsToolStripMenuItem.Name = "actionsToolStripMenuItem";
             this.actionsToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.actionsToolStripMenuItem.Text = "Edit";
@@ -183,14 +185,16 @@
             // addItemToolStripMenuItem
             // 
             this.addItemToolStripMenuItem.Name = "addItemToolStripMenuItem";
-            this.addItemToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.addItemToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.addItemToolStripMenuItem.Text = "Add Item";
+            this.addItemToolStripMenuItem.Click += new System.EventHandler(this.addItemToolStripMenuItem_Click);
             // 
             // addPatronToolStripMenuItem
             // 
             this.addPatronToolStripMenuItem.Name = "addPatronToolStripMenuItem";
-            this.addPatronToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.addPatronToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.addPatronToolStripMenuItem.Text = "Add Patron";
+            this.addPatronToolStripMenuItem.Click += new System.EventHandler(this.addPatronToolStripMenuItem_Click);
             // 
             // splitContainer1
             // 
@@ -353,10 +357,8 @@
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addItemButton,
-            this.editItemButton,
             this.deleteItemButton,
             this.addPatronButton,
-            this.editPatronButton,
             this.deletePatronButton,
             this.buttonStripSeparator,
             this.checkInOutButton});
@@ -375,16 +377,6 @@
             this.addItemButton.Size = new System.Drawing.Size(60, 22);
             this.addItemButton.Text = "Add Item";
             this.addItemButton.Click += new System.EventHandler(this.addItemButton_Click);
-            // 
-            // editItemButton
-            // 
-            this.editItemButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.editItemButton.Image = ((System.Drawing.Image)(resources.GetObject("editItemButton.Image")));
-            this.editItemButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.editItemButton.Name = "editItemButton";
-            this.editItemButton.Size = new System.Drawing.Size(58, 22);
-            this.editItemButton.Text = "Edit Item";
-            this.editItemButton.Click += new System.EventHandler(this.editItemButton_Click);
             // 
             // deleteItemButton
             // 
@@ -405,16 +397,6 @@
             this.addPatronButton.Size = new System.Drawing.Size(71, 22);
             this.addPatronButton.Text = "Add Patron";
             this.addPatronButton.Click += new System.EventHandler(this.addPatronButton_Click);
-            // 
-            // editPatronButton
-            // 
-            this.editPatronButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.editPatronButton.Image = ((System.Drawing.Image)(resources.GetObject("editPatronButton.Image")));
-            this.editPatronButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.editPatronButton.Name = "editPatronButton";
-            this.editPatronButton.Size = new System.Drawing.Size(69, 22);
-            this.editPatronButton.Text = "Edit Patron";
-            this.editPatronButton.Click += new System.EventHandler(this.editPatronButton_Click);
             // 
             // deletePatronButton
             // 
@@ -535,7 +517,21 @@
             // 
             this.librarySaveDialog.DefaultExt = "ldb";
             // 
-            // Form1
+            // deleteItemToolStripMenuItem
+            // 
+            this.deleteItemToolStripMenuItem.Enabled = false;
+            this.deleteItemToolStripMenuItem.Name = "deleteItemToolStripMenuItem";
+            this.deleteItemToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.deleteItemToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.deleteItemToolStripMenuItem.Text = "Delete Selected";
+            this.deleteItemToolStripMenuItem.Click += new System.EventHandler(this.deleteItemToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(149, 6);
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -543,7 +539,7 @@
             this.Controls.Add(this.splitContainer3);
             this.Controls.Add(this.menuStrip);
             this.MainMenuStrip = this.menuStrip;
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Library";
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
@@ -610,10 +606,8 @@
         private System.Windows.Forms.ToolStripStatusLabel decrementDateLabel;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton addItemButton;
-        private System.Windows.Forms.ToolStripButton editItemButton;
         private System.Windows.Forms.ToolStripButton deleteItemButton;
         private System.Windows.Forms.ToolStripButton addPatronButton;
-        private System.Windows.Forms.ToolStripButton editPatronButton;
         private System.Windows.Forms.ToolStripButton deletePatronButton;
         private System.Windows.Forms.OpenFileDialog libraryOpenDialog;
         private System.Windows.Forms.SaveFileDialog librarySaveDialog;
@@ -622,6 +616,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripSeparator buttonStripSeparator;
         private System.Windows.Forms.ToolStripButton checkInOutButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem deleteItemToolStripMenuItem;
     }
 }
 

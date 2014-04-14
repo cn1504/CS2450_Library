@@ -106,5 +106,37 @@ namespace CS2450_Library
         {
             return Patrons.Find(x => x.Id == patronId).GetBorrowLimit(currentDate);
         }
+        
+        public bool AddItem(Item item)
+        {
+            if (Items.Exists(x => x.Name == item.Name))
+            {
+                return false;
+            }
+
+            Items.Add(item);
+            return true;
+        }
+
+        public void DeleteItem(string name)
+        {
+            Items.RemoveAll(x => x.Name == name);
+        }
+
+        public void AddPatron(Patron patron)
+        {
+            patron.Id = 1;
+            while (Patrons.Exists(x => x.Id == patron.Id))
+            {
+                patron.Id++;
+            }
+
+            Patrons.Add(patron);
+        }
+
+        public void DeletePatron(int id)
+        {
+            Patrons.RemoveAll(x => x.Id == id);
+        }
     }
 }
