@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CS2450_Library
 {
+    [Serializable]
     public class Patron
     {
         public int Id;
