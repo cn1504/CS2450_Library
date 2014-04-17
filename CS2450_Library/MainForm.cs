@@ -329,7 +329,7 @@ namespace CS2450_Library
             {
                 library.SaveFile(currentFilepath);
             }
-
+            currentFilepath = "";
             library = new Library();
 
             refreshGUI();
@@ -337,6 +337,10 @@ namespace CS2450_Library
 
         private void openCatalogToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (currentFilepath != "")
+            {
+                library.SaveFile(currentFilepath);
+            }
             libraryOpenDialog.ShowDialog();
 
             refreshGUI();
@@ -389,7 +393,7 @@ namespace CS2450_Library
         {
             this.Activate();
             
-            currentFilepath = librarySaveDialog.FileName;
+            currentFilepath = libraryOpenDialog.FileName;
 
             if(currentFilepath != "")
                 library.LoadFile(currentFilepath);
