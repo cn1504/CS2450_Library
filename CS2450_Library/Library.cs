@@ -15,24 +15,6 @@ namespace CS2450_Library
 
         public Library()
         {
-            var i = new Book();
-            i.Name = "Dune";
-            i.Author = "Frank Herbert";
-            i.BorrowedBy = 0;
-            Items.Add(i);
-
-            var d = new Media();
-            d.Name = "The Hobbit";
-            d.BorrowedBy = 0;
-            d.IsDvd = true;
-            Items.Add(d);
-
-            var p = new Patron();
-            p.Name = "Frank Weber";
-            p.Address = "418 South 5th Street, Gadsden, AL(Alabama) 35901";
-            p.DateOfBirth = new DateTime(1988, 4, 12);
-            p.Id = 1;
-            Patrons.Add(p);
         }
 
         public void LoadFile(string filePath)
