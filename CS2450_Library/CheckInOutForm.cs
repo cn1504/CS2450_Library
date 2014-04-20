@@ -71,7 +71,7 @@ namespace CS2450_Library
             itemsListView.Columns.Add("Name", 150);
             itemsListView.Columns.Add("Author", 150);
 
-            foreach (var item in library.GetAvailableItems(patronId))
+            foreach (var item in library.GetAvailableItems(patronId, currentDate))
             {                
                 var item1 = new ListViewItem(item.Name);
                 if (item is Book)

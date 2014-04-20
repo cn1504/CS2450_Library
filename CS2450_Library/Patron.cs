@@ -16,7 +16,21 @@ namespace CS2450_Library
 
         public int GetBorrowLimit(DateTime currentDate)
         {
-            throw new NotImplementedException();
+            const int BORROW_LIMIT_ADULT = 6;
+            const int BORROW_LIMIT_CHILD = 3;
+
+            return (IsChild(currentDate)) ? BORROW_LIMIT_CHILD : BORROW_LIMIT_ADULT;
+        }
+
+        public bool IsChild(DateTime currentDate)
+        {
+            const int ADULT_AGE = 18;
+
+            int age = currentDate.Year - DateOfBirth.Year;
+            if (currentDate.Month < DateOfBirth.Month || 
+                (currentDate.Month == DateOfBirth.Month && currentDate.Day < DateOfBirth.Day)) 
+                age--;
+            return (age < ADULT_AGE);
         }
     }
 }

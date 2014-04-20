@@ -56,17 +56,34 @@ namespace CS2450_Library
 
         public IEnumerable<Item> GetOverdue(DateTime currentDate)
         {
-            throw new NotImplementedException();
+            TimeSpan BORROW_DURATION_ADULTS_BOOK = TimeSpan.FromDays(14);
+            TimeSpan BORROW_DURATION_CHILDRENS_BOOK = TimeSpan.FromDays(7);
+            TimeSpan BORROW_DURATION_DVD = TimeSpan.FromDays(2);
+            TimeSpan BORROW_DURATION_VIDEO_TAPE = TimeSpan.FromDays(2);
+
+            return from x in Items
+                   where x.BorrowedBy != 0 && (
+                   (x is Book && (x as Book).IsChild && (currentDate - x.BorrowDate > BORROW_DURATION_CHILDRENS_BOOK)) ||
+                   (x is Book && !(x as Book).IsChild && (currentDate - x.BorrowDate > BORROW_DURATION_ADULTS_BOOK)) ||
+                   (x is Media && (x as Media).IsDvd && (currentDate - x.BorrowDate > BORROW_DURATION_DVD)) ||
+                   (x is Media && !(x as Media).IsDvd && (currentDate - x.BorrowDate > BORROW_DURATION_VIDEO_TAPE))
+                   )
+                   select x;
         }
 
-        public IEnumerable<Item> GetAvailableItems(int patronId)
+        public IEnumerable<Item> GetAvailableItems(int patronId, DateTime currentDate)
         {
-            throw new NotImplementedException();
+            Patron p = Patrons.Find(x => x.Id == patronId);
+            return from x in Items
+                   where x.BorrowedBy == 0 && (p.IsChild(currentDate) ? (x is Book) && (x as Book).IsChild : true)
+                   select x;
         }
 
         public IEnumerable<Item> GetCheckedItems(int patronId)
         {
-            throw new NotImplementedException();
+            return from x in Items
+                   where x.BorrowedBy == patronId
+                   select x;
         }
 
         public void SetCheckOut(int patronId, IEnumerable<string> itemNames, DateTime currentDate)
