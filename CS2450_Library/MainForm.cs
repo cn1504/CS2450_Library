@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -392,13 +393,29 @@ namespace CS2450_Library
         private void libraryOpenDialog_FileOk(object sender, CancelEventArgs e)
         {
             this.Activate();
-            
-            currentFilepath = libraryOpenDialog.FileName;
 
-            if(currentFilepath != "")
-                library.LoadFile(currentFilepath);
-            Text = "Library - " + currentFilepath;
-            refreshGUI();
+            //this is the file we're going to open
+            String nextFile = libraryOpenDialog.FileName;
+
+            //if we actually selected a file
+            if (nextFile != "")
+            {
+                try
+                {
+                    //try to deserialize the file
+                    library.LoadFile(nextFile);
+                    //if no errors were caught, change the gui accordingly
+                    currentFilepath = nextFile;
+                    Text = "Library - " + currentFilepath;
+                    refreshGUI();
+                }
+                //if there was an error in deserialization, nothing is changed.
+                catch (InvalidDataException ex)
+                {
+                    MessageBox.Show("Unable to deserialize file: " + nextFile, "Error", MessageBoxButtons.OK);
+                }
+            }
+            //done
         }
 
         private void librarySaveDialog_FileOk(object sender, CancelEventArgs e)
@@ -439,7 +456,7 @@ namespace CS2450_Library
         {
             // Show Check In/Out Dialog for selected patron
             int patron = int.Parse(listView.SelectedItems[0].Text);
-            var myForm = new CheckInOutForm(library, patron, listView.SelectedItems[1].Text, currentTime);
+            var myForm = new CheckInOutForm(library, patron, listView.SelectedItems[0].Text, currentTime);
             myForm.Show();
         }
 

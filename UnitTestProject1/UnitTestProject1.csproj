@@ -50,9 +50,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="LibraryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PatronTests.cs" />
+    <Compile Include="Patron_IsChild_Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CS2450_Library\CS2450_Library.csproj">

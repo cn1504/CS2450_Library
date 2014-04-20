@@ -42,6 +42,8 @@
             this.actionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addPatronToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.deleteItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.categoryPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.splitter1 = new System.Windows.Forms.Splitter();
@@ -70,8 +72,6 @@
             this.currentDateStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.libraryOpenDialog = new System.Windows.Forms.OpenFileDialog();
             this.librarySaveDialog = new System.Windows.Forms.SaveFileDialog();
-            this.deleteItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -195,6 +195,20 @@
             this.addPatronToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.addPatronToolStripMenuItem.Text = "Add Patron";
             this.addPatronToolStripMenuItem.Click += new System.EventHandler(this.addPatronToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(175, 6);
+            // 
+            // deleteItemToolStripMenuItem
+            // 
+            this.deleteItemToolStripMenuItem.Enabled = false;
+            this.deleteItemToolStripMenuItem.Name = "deleteItemToolStripMenuItem";
+            this.deleteItemToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.deleteItemToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.deleteItemToolStripMenuItem.Text = "Delete Selected";
+            this.deleteItemToolStripMenuItem.Click += new System.EventHandler(this.deleteItemToolStripMenuItem_Click);
             // 
             // splitContainer1
             // 
@@ -510,26 +524,13 @@
             // libraryOpenDialog
             // 
             this.libraryOpenDialog.DefaultExt = "ldb";
-            this.libraryOpenDialog.FileName = "libraryOpenDialog";
+            this.libraryOpenDialog.Filter = "Library Database Files|*.ldb|All files|*.*";
             this.libraryOpenDialog.Title = "Open Library File";
             // 
             // librarySaveDialog
             // 
             this.librarySaveDialog.DefaultExt = "ldb";
-            // 
-            // deleteItemToolStripMenuItem
-            // 
-            this.deleteItemToolStripMenuItem.Enabled = false;
-            this.deleteItemToolStripMenuItem.Name = "deleteItemToolStripMenuItem";
-            this.deleteItemToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.deleteItemToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.deleteItemToolStripMenuItem.Text = "Delete Selected";
-            this.deleteItemToolStripMenuItem.Click += new System.EventHandler(this.deleteItemToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(149, 6);
+            this.librarySaveDialog.Filter = "Library Database Files|*.ldb|All files|*.*";
             // 
             // MainForm
             // 
