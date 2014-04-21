@@ -351,14 +351,6 @@ namespace CS2450_Library
             refreshGUI();
         }
 
-        private void saveCatalogToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if(currentFilepath == "")
-                librarySaveDialog.ShowDialog();
-            else
-                library.SaveFile(currentFilepath);
-        }
-
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             librarySaveDialog.ShowDialog();

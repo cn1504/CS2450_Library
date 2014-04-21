@@ -35,7 +35,6 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.openCatalogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.saveCatalogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -111,7 +110,6 @@
             this.toolStripSeparator2,
             this.openCatalogToolStripMenuItem,
             this.toolStripSeparator3,
-            this.saveCatalogToolStripMenuItem,
             this.saveAsToolStripMenuItem,
             this.toolStripSeparator1,
             this.exitToolStripMenuItem1});
@@ -143,14 +141,6 @@
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(203, 6);
-            // 
-            // saveCatalogToolStripMenuItem
-            // 
-            this.saveCatalogToolStripMenuItem.Name = "saveCatalogToolStripMenuItem";
-            this.saveCatalogToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveCatalogToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.saveCatalogToolStripMenuItem.Text = "Save Library File";
-            this.saveCatalogToolStripMenuItem.Click += new System.EventHandler(this.saveCatalogToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
@@ -580,7 +570,6 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newCatalogToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openCatalogToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveCatalogToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem actionsToolStripMenuItem;
