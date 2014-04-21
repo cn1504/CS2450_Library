@@ -90,6 +90,7 @@ namespace CS2450_Library
             addPatronButton.Visible = false;
             deletePatronButton.Visible = false;
             checkInOutButton.Visible = false;
+            deleteItemToolStripMenuItem.Enabled = false;
 
             if (selectedCategory == 0)         // Catalog View 
             {
@@ -99,7 +100,8 @@ namespace CS2450_Library
                 listView.Columns.Add("Name", 150);
                 listView.Columns.Add("Author", 100);
                 listView.Columns.Add("Type", 80);
-                listView.Columns.Add("Borrowed By", 150);
+                listView.Columns.Add("Borrowed By", 80);
+                listView.Columns.Add("Name", 100);
                 listView.Columns.Add("Borrowed Date", 100);
 
                 foreach (var item in library.GetCatalog())
@@ -122,6 +124,7 @@ namespace CS2450_Library
                     }
 
                     item1.SubItems.Add((item.BorrowedBy == 0) ? "" : item.BorrowedBy.ToString());
+                    item1.SubItems.Add((item.BorrowedBy == 0) ? "" : library.FindPatron(item.BorrowedBy).Name);
                     item1.SubItems.Add((item.BorrowedBy == 0) ? "" : item.BorrowDate.ToString("d"));
                     listView.Items.Add(item1);
                 }
@@ -164,7 +167,8 @@ namespace CS2450_Library
 
                 listView.Columns.Add("Name", 150);
                 listView.Columns.Add("Author", 150);
-                listView.Columns.Add("Borrowed By", 150);
+                listView.Columns.Add("Borrowed By", 80);
+                listView.Columns.Add("Name", 100);
                 listView.Columns.Add("Borrowed Date", 100);
 
                 foreach (var item in library.GetOverdue(currentTime))
@@ -175,6 +179,7 @@ namespace CS2450_Library
                     else
                         item1.SubItems.Add("");
                     item1.SubItems.Add((item.BorrowedBy == 0) ? "" : item.BorrowedBy.ToString());
+                    item1.SubItems.Add((item.BorrowedBy == 0) ? "" : library.FindPatron(item.BorrowedBy).Name);
                     item1.SubItems.Add((item.BorrowedBy == 0) ? "" : item.BorrowDate.ToString("d"));
                     listView.Items.Add(item1);                
                 }
@@ -262,7 +267,6 @@ namespace CS2450_Library
             }
             else if(selectedCategory == 2)  // Overdue View
             {
-
             }
         }
 
