@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS2450_Library", "CS2450_Library\CS2450_Library.csproj", "{2B71971D-BC69-4BA5-A174-1DDBE0E539D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "UnitTestProject1\UnitTestProject1.csproj", "{2AFE9753-09D4-4604-A34B-FC7C593B27F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS2450_UnitTests", "UnitTestProject1\CS2450_UnitTests.csproj", "{2AFE9753-09D4-4604-A34B-FC7C593B27F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
