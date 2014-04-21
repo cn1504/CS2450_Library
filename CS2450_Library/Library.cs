@@ -178,5 +178,10 @@ namespace CS2450_Library
         {
             Patrons.RemoveAll(x => x.Id == id);
         }
+
+        public Patron FindPatron(int id)
+        {
+            return Patrons.Find(x => x.Id == id);
+        }
     }
 }
