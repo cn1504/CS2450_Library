@@ -44,11 +44,12 @@ namespace CS2450_Library
             patronsButtonLabel.Click += patronsButton_Click;
             overdueButtonLabel.Click += overdueButton_Click;
 
-            refreshGUI();
             FormClosing += Form1_FormClosing;
 
             libraryOpenDialog.FileOk += libraryOpenDialog_FileOk;
             librarySaveDialog.FileOk += librarySaveDialog_FileOk;
+
+            refreshGUI();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -522,6 +523,14 @@ namespace CS2450_Library
             var form = new AddPatronForm(library);
             form.ShowDialog();
             refreshGUI();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Would you like to open an existing library file?", "Library File", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                libraryOpenDialog.ShowDialog();
+            }
         }
     }
 }
