@@ -460,8 +460,8 @@ namespace CS2450_Library
         {
             // Show Check In/Out Dialog for selected patron
             int patron = int.Parse(listView.SelectedItems[0].Text);
-            var myForm = new CheckInOutForm(library, patron, listView.SelectedItems[0].Text, currentTime);
-            myForm.Show();
+            var myForm = new CheckInOutForm(library, patron, listView.SelectedItems[0].SubItems[1].Text, currentTime);
+            myForm.ShowDialog();
         }
 
         private void deleteItemToolStripMenuItem_Click(object sender, EventArgs e)
