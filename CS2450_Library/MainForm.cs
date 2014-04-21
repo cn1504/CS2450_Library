@@ -336,6 +336,7 @@ namespace CS2450_Library
                 library.SaveFile(currentFilepath);
             }
             currentFilepath = "";
+            Text = "Library";
             library = new Library();
 
             refreshGUI();
@@ -359,7 +360,6 @@ namespace CS2450_Library
 
         private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            OnExit();
             this.Close();
         }
 
@@ -367,7 +367,10 @@ namespace CS2450_Library
         {
             if (currentFilepath == "")
             {
-                librarySaveDialog.ShowDialog();
+                if (MessageBox.Show("Save the current library?", "Library File", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    librarySaveDialog.ShowDialog();
+                }
             }
             else
             {
